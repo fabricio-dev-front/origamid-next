@@ -18,6 +18,9 @@ export function Header() {
       >
         Server Client
       </CustomLink>
+      <CustomLink href="/produtos" className="hover:text-white hover:underline">
+        Produtos
+      </CustomLink>
     </header>
   );
 }
