@@ -7,7 +7,7 @@
 export async function GET() {
   const response = await fetch("https://api.origamid.online/vendas", {
     headers: {
-      apikey: "",
+      apikey: process.env.APIKEY_ROUTE_HANHLERS_1 || "",
     },
   });
 
