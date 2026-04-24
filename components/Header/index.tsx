@@ -24,6 +24,9 @@ export function Header() {
       <CustomLink href="/cursos" className="hover:text-white hover:underline">
         Cursos
       </CustomLink>
+      <CustomLink href="/acao" className="hover:text-white hover:underline">
+        Ações
+      </CustomLink>
     </header>
   );
 }
