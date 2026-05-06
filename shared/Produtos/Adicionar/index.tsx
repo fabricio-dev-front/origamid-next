@@ -1,28 +1,25 @@
 "use client";
 
-import { redirect } from "next/navigation";
-import { Produto } from "..";
 import { AdicionarProduto } from "@/components/Actions/adicionar-produto";
+import { useFormStatus, useFormState } from "react-dom";
 
-export function AdicionarIndex() {
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const data: Produto = {
-      nome: event.currentTarget.nome.value,
-      preco: Number(event.currentTarget.preco.value),
-      descricao: event.currentTarget.descricao.value,
-      estoque: Number(event.currentTarget.estoque.value),
-      importado: event.currentTarget.importado.checked ? 1 : 0,
-    };
-
-    await AdicionarProduto(data);
-
-    redirect("/produtosCache");
-  }
+function Button() {
+  const status = useFormStatus();
 
   return (
-    <form onSubmit={handleSubmit}>
+    <button type="submit" disabled={status.pending}>
+      {status.pending ? "Enviando..." : "Enviar"}
+    </button>
+  );
+}
+
+export function AdicionarIndex() {
+  const [state, formActions] = useFormState(AdicionarProduto, {
+    errors: [],
+  });
+
+  return (
+    <form action={formActions}>
       <div className="flex flex-col gap-2">
         <label htmlFor="nome">Nome</label>
         <input type="text" id="nome" name="nome" />
@@ -48,7 +45,13 @@ export function AdicionarIndex() {
         <input type="checkbox" id="importado" name="importado" />
       </div>
 
-      <button type="submit">Enviar</button>
+      {state.errors.map((error, index) => (
+        <p key={index} className="text-red-500">
+          {error}
+        </p>
+      ))}
+
+      <Button />
     </form>
   );
 }
