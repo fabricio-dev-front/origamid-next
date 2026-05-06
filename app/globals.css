@@ -13,7 +13,7 @@ html {
   --font-title: Georgia, "Times New Roman", Times, serif;
   --font-size: 1.25rem;
   --color: #a8f;
-  /* --color-light: #edf; */
+  --color-light: #edf;
   --color-dark: #206;
   --radius: 0.25rem;
 }
