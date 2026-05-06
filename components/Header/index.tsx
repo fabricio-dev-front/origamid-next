@@ -24,38 +24,32 @@ export async function Header() {
     conta = (await response.json()) as Conta;
   }
 
+  const links = [
+    { href: "/imc", label: "Calcular Imc" },
+    { href: "/serveFetch", label: "Server Fetch" },
+    { href: "/serverClient", label: "Server Client" },
+    { href: "/produtos", label: "Produtos" },
+    { href: "/login", label: "Login" },
+    { href: "/cursos", label: "Cursos" },
+    { href: "/acao", label: "Ações" },
+    { href: "/produtosCache", label: "Produtos Cache" },
+    { href: "/produtosCache/adicionar", label: "Adicionar Produto" },
+  ];
+
   return (
-    <header className="flex items-center gap-5 bg-white/5 rounded-lg p-4 mb-10">
-      <CustomLink href="/imc" className="hover:text-white hover:underline">
-        Calcular Imc
-      </CustomLink>
-      <CustomLink
-        href="/serveFetch"
-        className="hover:text-white hover:underline"
-      >
-        Server Fetch
-      </CustomLink>
-      <CustomLink
-        href="/serverClient"
-        className="hover:text-white hover:underline"
-      >
-        Server Client
-      </CustomLink>
-      <CustomLink href="/produtos" className="hover:text-white hover:underline">
-        Produtos
-      </CustomLink>
-      <CustomLink href="/cursos" className="hover:text-white hover:underline">
-        Cursos
-      </CustomLink>
-      <CustomLink href="/acao" className="hover:text-white hover:underline">
-        Ações
-      </CustomLink>
-      {conta.autorizado ? (
-        <span>Olá, {conta.usuario}!</span>
-      ) : (
-        <CustomLink href="/login" className="hover:text-white hover:underline">
-          Login
-        </CustomLink>
+    <header className="flex items-center gap-5 bg-white/5 rounded-lg p-4 mb-10 text-nowrap">
+      {links.map((link) =>
+        link.label === "Login" && conta.autorizado ? (
+          `${conta.usuario} logado!`
+        ) : (
+          <CustomLink
+            key={link.href}
+            href={link.href}
+            className="hover:text-black hover:underline"
+          >
+            {link.label}
+          </CustomLink>
+        ),
       )}
     </header>
   );

@@ -25,11 +25,11 @@ export function ServerClient() {
   if (dados === null) return;
   return (
     <div className="flex flex-col gap-3">
-      <p className="text-white text-2xl font-medium text-center">
+      <p className="text-black text-2xl font-medium text-center">
         Server Client
       </p>
 
-      {loading && <p className="text-white text-center">Carregando...</p>}
+      {loading && <p className="text-black text-center">Carregando...</p>}
       <div className="grid grid-cols-1 lg:grid-cols-2">
         {dados.map(({ nome, preco, id }) => (
           <ul key={id}>
