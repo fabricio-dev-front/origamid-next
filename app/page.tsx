@@ -23,5 +23,5 @@ export default async function Home() {
     conta = (await response.json()) as Conta;
   }
 
-  return <div>Bem vindo, {conta.usuario}!</div>;
+  return <div>Bem vindo {conta.usuario}!</div>;
 }

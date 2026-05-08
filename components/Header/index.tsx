@@ -37,7 +37,7 @@ export async function Header() {
   ];
 
   return (
-    <header className="flex items-center gap-5 bg-white/5 rounded-lg p-4 mb-10 text-nowrap">
+    <header className="flex items-center gap-5 bg-black/10 rounded-lg p-4 mb-10 text-nowrap">
       {links.map((link) =>
         link.label === "Login" && conta.autorizado ? (
           `${conta.usuario} logado!`
